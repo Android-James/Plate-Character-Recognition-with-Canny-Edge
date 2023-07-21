@@ -4,9 +4,9 @@ from ultralytics import YOLO
 import cv2
 
 
-VIDEOS_DIR = os.path.join('.', 'videos')
+VIDEOS_DIR = os.path.join('.', "C:\\YOLOv8 and Canny Edge\\license_dataset\\videos")
 
-video_path = os.path.join(VIDEOS_DIR, 'testVideo1.mp4')
+video_path = os.path.join(VIDEOS_DIR, 'testVideo5.mp4')
 video_path_out = '{}_out.mp4'.format(video_path)
 
 cap = cv2.VideoCapture(video_path)
@@ -17,7 +17,7 @@ out = cv2.VideoWriter(video_path_out, cv2.VideoWriter_fourcc(*'MP4V'), int(cap.g
 # model_path = os.path.join('.', 'runs', 'detect', 'train', 'weights', 'last.pt')
 
 # Load a model
-model = YOLO()  # load a custom model
+model = YOLO('yolov8n.pt')  # load a custom model
 
 threshold = 0.5
 
