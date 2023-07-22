@@ -1,4 +1,4 @@
-path: "D:/license_dataset"  # dataset root dir
+path: 'C:\YOLOv8_and_Canny_Edge\\Plate-Character-Recognition-with-Canny-Edge\\license_dataset'  # dataset root dir
 train: train/images  # train images (relative to 'path')
 val: valid/images  # val images (relative to 'path')
 
