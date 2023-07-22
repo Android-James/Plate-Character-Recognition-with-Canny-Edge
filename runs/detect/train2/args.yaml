@@ -4,12 +4,12 @@ model: yolov8n.yaml
 data: Plate Detection\config.yaml
 epochs: 1
 patience: 50
-batch: 16
+batch: 10
 imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: null
+device: 0
 workers: 8
 project: null
 name: null
@@ -22,7 +22,7 @@ deterministic: true
 single_cls: false
 rect: false
 cos_lr: false
-close_mosaic: 0
+close_mosaic: 10
 resume: false
 amp: true
 fraction: 1.0
@@ -92,6 +92,5 @@ mosaic: 1.0
 mixup: 0.0
 copy_paste: 0.0
 cfg: null
-v5loader: false
 tracker: botsort.yaml
 save_dir: runs\detect\train2
