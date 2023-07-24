@@ -14,9 +14,9 @@ print('Cached:   ', round(torch.cuda.memory_reserved(0)/1024**3,1), 'GB')
 # model = YOLO('yolov8n.pt')  # load a pretrained model (recommended for training)
 model = YOLO('yolov8n.yaml').load('yolov8n.pt')  # build from YAML and transfer weights
 def run():
-    # torch.multiprocessing.freeze_support()
+    torch.multiprocessing.freeze_support()
     #Use the model
-    results = model.train(data="Plate Detection\config.yaml", epochs=1, batch=-1)  # train the model
+    results = model.train(data="Plate Detection\config.yaml", epochs=5 ,batch=3)  # train the model
 
 if __name__ == '__main__':
     run()    
