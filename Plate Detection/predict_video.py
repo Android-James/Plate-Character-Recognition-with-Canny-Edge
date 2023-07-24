@@ -7,7 +7,7 @@ import cv2
 VIDEOS_DIR = 'C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos'
 # VIDEOS_DIR = os.path.join('.', "C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos")
 
-video_path = os.path.join(VIDEOS_DIR, 'testVideo5.mp4')
+video_path = os.path.join(VIDEOS_DIR, 'testVideo1.mp4')
 video_path_out = '{}_out.mp4'.format(video_path)
 
 cap = cv2.VideoCapture(video_path)
@@ -15,9 +15,10 @@ ret, frame = cap.read()
 H, W, _ = frame.shape
 out = cv2.VideoWriter(video_path_out, cv2.VideoWriter_fourcc(*'MP4V'), int(cap.get(cv2.CAP_PROP_FPS)), (W, H))
 
-# model_path = os.path.join('C:\\YOLOv8_and_Canny_Edge\\Plate-Character-Recognition-with-Canny-Edge\\runs\detect\\train6\weights\\best.pt')
+model_path = os.path.join('.', 'runs', 'detect', 'train2', 'weights', 'last.pt')
 # Load a model
-model = YOLO('/model/yolov8n.pt')
+model = YOLO('yolov8n.pt')
+model = YOLO(model_path)
 
 
 threshold = 0.5
