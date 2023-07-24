@@ -16,7 +16,7 @@ model = YOLO('yolov8n.yaml').load('yolov8n.pt')  # build from YAML and transfer 
 def run():
     # torch.multiprocessing.freeze_support()
     #Use the model
-    results = model.train(data="Plate Detection\config.yaml", epochs=1, batch=3)  # train the model
+    results = model.train(data="Plate Detection\config.yaml", epochs=1, batch=-1)  # train the model
 
 if __name__ == '__main__':
     run()    
