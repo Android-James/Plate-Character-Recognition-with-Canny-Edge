@@ -2,7 +2,7 @@ task: detect
 mode: train
 model: yolov8n.yaml
 data: Plate Detection\config.yaml
-epochs: 5
+epochs: 1
 patience: 50
 batch: 3
 imgsz: 640
@@ -93,4 +93,4 @@ mixup: 0.0
 copy_paste: 0.0
 cfg: null
 tracker: botsort.yaml
-save_dir: runs\detect\train2
+save_dir: runs\detect\train6
