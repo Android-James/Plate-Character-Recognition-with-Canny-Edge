@@ -6,12 +6,12 @@ results = {}
 
 # load models
 #model1 (pre-trained on COCO2017 for cars detection)
-coco_model = YOLO('C:\YOLOv8 and Canny Edge\Plate-Character-Recognition-with-Canny-Edge\yolov8n.pt') 
+coco_model = YOLO('D:\Plate-Character-Recognition-with-Canny-Edge\model\yolov8n.pt') 
 
 #model2 (pre-trained on license plates dataset for license plates detection)
 
 # load video
-cap = cv2.VideoCapture('C:\YOLOv8 and Canny Edge\Plate-Character-Recognition-with-Canny-Edge\license_dataset\\videos\\testVideo5.mp4')
+cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\license_dataset\videos\testVideo5.mp4')
 
 vehicles = [2, 3, 5, 7]
 
