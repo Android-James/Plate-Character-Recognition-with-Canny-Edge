@@ -15,7 +15,7 @@ coco_model = YOLO('yolov8n.pt')
 license_plate_detector = YOLO('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo0.mp4')
+cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo5.mp4')
 
 vehicles = [2, 3, 5, 7]
 
