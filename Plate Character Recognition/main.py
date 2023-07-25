@@ -12,10 +12,10 @@ mot_tracker = Sort()
 
 # load models
 coco_model = YOLO('yolov8n.pt')
-license_plate_detector = YOLO('/runs/detect/train3/weights/best.pt')
+license_plate_detector = YOLO('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('/license_dataset/videos/testVideo5.mp4')
+cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo0.mp4')
 
 vehicles = [2, 3, 5, 7]
 
@@ -60,14 +60,14 @@ while ret:
                 cv2.waitKey(0)
 
                 # read license plate number
-                license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
+#                 license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
 
-                if license_plate_text is not None:
-                    results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
-                                                  'license_plate': {'bbox': [x1, y1, x2, y2],
-                                                                    'text': license_plate_text,
-                                                                    'bbox_score': score,
-                                                                    'text_score': license_plate_text_score}}
+#                 if license_plate_text is not None:
+#                     results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
+#                                                   'license_plate': {'bbox': [x1, y1, x2, y2],
+#                                                                     'text': license_plate_text,
+#                                                                     'bbox_score': score,
+#                                                                     'text_score': license_plate_text_score}}
 
-# write results
-write_csv(results, './test.csv')
+#  write results
+# write_csv(results, './test.csv')
