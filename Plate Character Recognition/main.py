@@ -64,6 +64,11 @@ while ret:
                 # cv2.imshow('thresh', license_plate_crop_canny)
                 # cv2.waitKey(0)
 
+                plt.imshow(license_plate_crop, cmap='gray')
+                plt.title('Canny Edge Detection')
+                plt.axis('off')
+                plt.show()
+
                 plt.imshow(license_plate_crop_canny, cmap='gray')
                 plt.title('Canny Edge Detection')
                 plt.axis('off')
