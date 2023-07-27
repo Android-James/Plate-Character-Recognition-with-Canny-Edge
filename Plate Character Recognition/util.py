@@ -2,7 +2,7 @@ import string
 import easyocr
 
 # Initialize the OCR reader
-reader = easyocr.Reader(['en'], gpu=True)
+reader = easyocr.Reader(['en'], gpu=False)
 
 # Mapping dictionaries for character conversion
 dict_char_to_int = {'O': '0',
@@ -73,12 +73,11 @@ def license_complies_format(text):
 
     if (text[0] in string.ascii_uppercase or text[0] in dict_int_to_char.keys()) and \
        (text[1] in string.ascii_uppercase or text[1] in dict_int_to_char.keys()) and \
-       (text[2] in string.ascii_uppercase or text[2] in dict_int_to_char.keys()) and \
+       (text[2] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or text[2] in dict_char_to_int.keys()) and \
        (text[3] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or text[3] in dict_char_to_int.keys()) and \
-       (text[4] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or text[4] in dict_char_to_int.keys()) and \
-       (text[5] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or text[5] in dict_char_to_int.keys()) and \
-       (text[6] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or text[6] in dict_char_to_int.keys()):
-       
+       (text[4] in string.ascii_uppercase or text[4] in dict_int_to_char.keys()) and \
+       (text[5] in string.ascii_uppercase or text[5] in dict_int_to_char.keys()) and \
+       (text[6] in string.ascii_uppercase or text[6] in dict_int_to_char.keys()):
         return True
     else:
         return False

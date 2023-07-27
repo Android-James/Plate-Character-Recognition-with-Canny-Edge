@@ -14,10 +14,10 @@ mot_tracker = Sort()
 
 # load models
 coco_model = YOLO('yolov8n.pt')
-license_plate_detector = YOLO('D:\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
+license_plate_detector = YOLO('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo1.mp4')
+cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo0.mp4')
 
 vehicles = [3]
 
@@ -28,6 +28,8 @@ while ret:
     frame_nmr += 1
     ret, frame = cap.read()
     if ret:
+        if frame_nmr > 500:
+            break
         results[frame_nmr] = {}
         # detect vehicles
         detections = coco_model(frame)[0]
@@ -70,13 +72,16 @@ while ret:
 
                 # read license plate number
                 license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_canny)
+                print(license_plate_text)
 
-                if license_plate_text is not None:
+                if license_plate_text is not None and license_plate_text_score > 0.5:
                     results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
                                                   'license_plate': {'bbox': [x1, y1, x2, y2],
                                                                     'text': license_plate_text,
                                                                     'bbox_score': score,
                                                                     'text_score': license_plate_text_score}}
 
+                    # results = update_license_plate_results(frame_nmr, car_id, xcar1, ycar1, xcar2, ycar2, x1, y1, x2,
+                    #                                         y2, license_plate_text, score, results)
 #  write results
-write_csv(results, './test-3.csv')
+write_csv(results, './test2.csv')
