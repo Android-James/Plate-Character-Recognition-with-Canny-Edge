@@ -14,10 +14,10 @@ mot_tracker = Sort()
 
 # load models
 coco_model = YOLO('yolov8n.pt')
-license_plate_detector = YOLO('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
+license_plate_detector = YOLO('D:\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train3\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo1080-60-2.MOV')
+cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo4k-60.MOV')
 
 vehicles = [2,3,6,8]
 
@@ -28,8 +28,8 @@ while ret:
     frame_nmr += 1
     ret, frame = cap.read()
     if ret:
-        if frame_nmr > 300:
-            break
+        # if frame_nmr > 300:
+        #     break
         results[frame_nmr] = {}
         # detect vehicles
         detections = coco_model(frame)[0]
@@ -86,4 +86,4 @@ while ret:
                                                                     'text_score': license_plate_text_score}}
 
 #  write results
-write_csv(results, './test7.csv')
+write_csv(results, './testMAT2.csv')
