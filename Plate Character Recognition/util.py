@@ -21,13 +21,8 @@ dict_int_to_char = {'0': 'O',
 
 
 def write_csv(results, output_path):
-    """
-    Write the results to a CSV file.
+    # Write the results to a CSV file.
 
-    Args:
-        results (dict): Dictionary containing the results.
-        output_path (str): Path to the output CSV file.
-    """
     with open(output_path, 'w') as f:
         f.write('{},{},{},{},{},{},{}\n'.format('frame_nmr', 'car_id', 'car_bbox',
                                                 'license_plate_bbox', 'license_plate_bbox_score', 'license_number',
@@ -59,15 +54,8 @@ def write_csv(results, output_path):
 
 
 def license_complies_format(text):
-    """
-    Check if the license plate text complies with the required format.
+    #Check if the license plate text complies with the required format.
 
-    Args:
-        text (str): License plate text.
-
-    Returns:
-        bool: True if the license plate complies with the format, False otherwise.
-    """
     if len(text) != 7:
         return False
 
@@ -95,15 +83,8 @@ def license_complies_format(text):
 
 
 def format_license(text):
-    """
-    Format the license plate text by converting characters using the mapping dictionaries.
+    # Format the license plate text by converting characters using the mapping dictionaries.
 
-    Args:
-        text (str): License plate text.
-
-    Returns:
-        str: Formatted license plate text.
-    """
     license_plate_ = ''
     # mapping = {0: dict_int_to_char, 1: dict_int_to_char, 4: dict_int_to_char, 5: dict_int_to_char, 6: dict_int_to_char,
     #            2: dict_char_to_int, 3: dict_char_to_int}
@@ -120,15 +101,7 @@ def format_license(text):
 
 
 def read_license_plate(license_plate_crop):
-    """
-    Read the license plate text from the given cropped image.
-
-    Args:
-        license_plate_crop (PIL.Image.Image): Cropped image containing the license plate.
-
-    Returns:
-        tuple: Tuple containing the formatted license plate text and its confidence score.
-    """
+    # Read the license plate text from the given cropped image.
 
     detections = reader.readtext(license_plate_crop)
 
