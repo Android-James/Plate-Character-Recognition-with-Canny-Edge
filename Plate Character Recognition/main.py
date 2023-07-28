@@ -14,10 +14,10 @@ mot_tracker = Sort()
 
 # load models
 coco_model = YOLO('yolov8n.pt')
-license_plate_detector = YOLO('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train4\\weights\\last.pt')
+license_plate_detector = YOLO('D:\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train6\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('C:\YOLOv8_and_Canny_Edge\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo1080-60-2.MOV')
+cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\testVideo4k-60.MOV')
 
 vehicles = [2,3,6,8]
 
@@ -28,8 +28,8 @@ while ret:
     frame_nmr += 1
     ret, frame = cap.read()
     if ret:
-        if frame_nmr > 700:
-            break
+        # if frame_nmr > 700:
+        #     break
         results[frame_nmr] = {}
         # detect vehicles
         detections = coco_model(frame)[0]
@@ -57,33 +57,33 @@ while ret:
 
 
                 # control 
-                # license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
-                # _, license_plate_crop_thresh = cv2.threshold(license_plate_crop_gray, 160, 255, cv2.THRESH_BINARY_INV)
+                license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
+                _, license_plate_crop_thresh = cv2.threshold(license_plate_crop_gray, 160, 255, cv2.THRESH_BINARY_INV)
 
                 # canny edge
-                license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
-                license_plate_crop_blurred = cv2.GaussianBlur(license_plate_crop_gray, (5, 5), 0)
-                license_plate_crop_canny = cv2.Canny(license_plate_crop, 20, 215, 1)
+                # license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
+                # license_plate_crop_blurred = cv2.GaussianBlur(license_plate_crop_gray, (5, 5), 0)
+                # license_plate_crop_canny = cv2.Canny(license_plate_crop, 20, 215, 1)
 
-                plt.imshow(license_plate_crop, cmap='gray')
-                plt.title('Cropped')
-                plt.axis('off')
-                plt.show()
+                # plt.imshow(license_plate_crop, cmap='gray')
+                # plt.title('Cropped')
+                # plt.axis('off')
+                # plt.show()
 
-                plt.imshow(license_plate_crop_canny, cmap='gray')
-                plt.title('Canny')
-                plt.axis('off')
-                plt.show()
+                # plt.imshow(license_plate_crop_canny, cmap='gray')
+                # plt.title('Canny')
+                # plt.axis('off')
+                # plt.show()
 
                 # read license plate number
-                # license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
+                license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
 
-                # if license_plate_text is not None:
-                #     results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
-                #                                   'license_plate': {'bbox': [x1, y1, x2, y2],
-                #                                                     'text': license_plate_text,
-                #                                                     'bbox_score': score,
-                #                                                     'text_score': license_plate_text_score}}
+                if license_plate_text is not None:
+                    results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
+                                                  'license_plate': {'bbox': [x1, y1, x2, y2],
+                                                                    'text': license_plate_text,
+                                                                    'bbox_score': score,
+                                                                    'text_score': license_plate_text_score}}
 
 #  write results
-# write_csv(results, './testMAT2.csv')
+write_csv(results, './testMAT2.csv')
