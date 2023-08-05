@@ -17,7 +17,7 @@ coco_model = YOLO('yolov8n.pt')
 license_plate_detector = YOLO('D:\Plate-Character-Recognition-with-Canny-Edge\\runs\\detect\\train6\\weights\\last.pt')
 
 # load video
-cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\danica dataset\\testVideo4k-30-2.MOV')
+cap = cv2.VideoCapture('D:\Plate-Character-Recognition-with-Canny-Edge\\license_dataset\\videos\\danica dataset\\testVideo4k-30.MOV')
 
 vehicles = [2,3,6,8]
 
@@ -57,13 +57,13 @@ while ret:
 
 
                 # control 
-                license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
-                _, license_plate_crop_thresh = cv2.threshold(license_plate_crop_gray, 160, 255, cv2.THRESH_BINARY_INV)
+                # license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
+                # _, license_plate_crop_thresh = cv2.threshold(license_plate_crop_gray, 160, 255, cv2.THRESH_BINARY_INV)
 
                 # canny edge
-                # license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
-                # license_plate_crop_blurred = cv2.GaussianBlur(license_plate_crop_gray, (5, 5), 0)
-                # license_plate_crop_canny = cv2.Canny(license_plate_crop, 20, 300, 1)
+                license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
+                license_plate_crop_blurred = cv2.GaussianBlur(license_plate_crop_gray, (5, 5), 0)
+                license_plate_crop_canny = cv2.Canny(license_plate_crop, 20, 300, 1)
 
                 # plt.imshow(license_plate_crop, cmap='gray')
                 # plt.title('Cropped')
@@ -76,7 +76,7 @@ while ret:
                 # plt.show()
 
                 # read license plate number
-                license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
+                license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_canny)
 
                 if license_plate_text is not None:
                     results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]},
@@ -86,4 +86,4 @@ while ret:
                                                                     'text_score': license_plate_text_score}}
 
 #  write results
-write_csv(results, './testVideo4k-30-2-control.csv')
+write_csv(results, './testVideo4k-30-canny.csv')
